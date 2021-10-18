@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "391736861545",
+    "project_id": "cryptocoinapp-678aa",
+    "storage_bucket": "cryptocoinapp-678aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:391736861545:android:39e93608c0ddcd8c8e93f8",
+        "android_client_info": {
+          "package_name": "com.example.coroutinecryptoapi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "391736861545-ups4l8pmg3r5vpm77cdaihb8047rlqaj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqBRw7GyLU1jUsyrGUQ89d7_qyyoTf4V0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "391736861545-ups4l8pmg3r5vpm77cdaihb8047rlqaj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
