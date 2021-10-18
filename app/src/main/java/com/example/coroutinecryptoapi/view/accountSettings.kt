@@ -2,6 +2,7 @@ package com.example.coroutinecryptoapi.view
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -41,7 +42,10 @@ class accountSettings : AppCompatActivity(),settinsAdapter.settingslistener{
         if(settingsPage == "Hesap Bilgileri"){
             settings(accaountInfo)
             println("${settingsPage}")
-
+        }
+        if(settingsPage=="Sifre Degiştir"){
+            val intent = Intent(this,updatePassword::class.java)
+            startActivity(intent)
         }
 
     }
