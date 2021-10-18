@@ -8,8 +8,7 @@ import com.example.coroutinecryptoapi.Model.CryptoModel
 import com.example.coroutinecryptoapi.R
 import kotlinx.android.synthetic.main.settings.view.*
 
-class settinsAdapter(private val listener: settinsAdapter.settingslistener):RecyclerView.Adapter<settinsAdapter.RowHolder>() {
-    val settings:Array<String> = arrayOf("Hesap Bilgileri","Sifre Degiştir","Önceki Hesap İşlemleri","Profil Ayarları")
+class settinsAdapter(val settings:Array<String> ,private val listener: settinsAdapter.settingslistener):RecyclerView.Adapter<settinsAdapter.RowHolder>() {
 
     interface settingslistener{
             fun OnItemClick(settings:Array<String>,position: Int)
