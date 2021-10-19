@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coroutinecryptoapi.R
 import com.example.coroutinecryptoapi.adapter.settinsAdapter
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_account_settings.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers
@@ -44,8 +47,21 @@ class accountSettings : AppCompatActivity(),settinsAdapter.settingslistener{
             println("${settingsPage}")
         }
         if(settingsPage=="Sifre Degiştir"){
-            val intent = Intent(this,updatePassword::class.java)
-            startActivity(intent)
+            val user = FirebaseAuth.getInstance()
+            val email = Firebase.auth.currentUser
+            email!!.email?.let { user.sendPasswordResetEmail(it).addOnCompleteListener{
+                task->
+                if(task.isSuccessful){
+                    println("Şifre Sıfırlama BAŞARILI")
+                    Toast.makeText(this,"Şifre Değiştirme Linki Gönderildi",Toast.LENGTH_LONG).show()
+                    Toast.makeText(this,"${email.email} Eposta Adresinizi Kontrol Edin",Toast.LENGTH_LONG).show()
+                }
+                else{
+                    println("Şifre Sıfırlama BAŞARISIZ")
+                    Toast.makeText(this,"Şifre Değiştirme Linki Gönderilemedi",Toast.LENGTH_LONG).show()
+                }
+            }
+            }
         }
 
     }
