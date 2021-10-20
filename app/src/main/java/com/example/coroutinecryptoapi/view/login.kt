@@ -3,12 +3,15 @@ package com.example.coroutinecryptoapi.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.EditText
 import android.widget.Toast
 import com.example.coroutinecryptoapi.R
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.view.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_create_user.*
 
 
 class login : AppCompatActivity() {
@@ -25,6 +28,11 @@ class login : AppCompatActivity() {
         }
         loginButton.setOnClickListener {
             login()
+        }
+
+        forgetPasswordTextView.setOnClickListener {
+            val intent = Intent(this,forgetPassword::class.java)
+            startActivity(intent)
         }
 
     }
