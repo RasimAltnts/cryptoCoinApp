@@ -1,12 +1,9 @@
 package com.example.coroutinecryptoapi.view
 
-import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coroutinecryptoapi.Model.CryptoModel
@@ -22,7 +19,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity(), adapter.Listener {
     //API service BASE URL tanımlandı....
@@ -50,7 +46,7 @@ class MainActivity : AppCompatActivity(), adapter.Listener {
 
         println("Working ${Thread.currentThread().name}")
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
+        profileRecyclerView.layoutManager = layoutManager
 
         GlobalScope.launch(Dispatchers.Default) {
             //println("Working ${Thread.currentThread().name}")
@@ -58,9 +54,12 @@ class MainActivity : AppCompatActivity(), adapter.Listener {
         }
 
         settingsİmageView.setOnClickListener {
-            finishActivity(requestCode)
             settingsOnClick()
 
+        }
+        AccountİmageView.setOnClickListener {
+            val intent = Intent(this,settingsProfile::class.java)
+            startActivity(intent)
         }
 
     }
@@ -91,7 +90,7 @@ class MainActivity : AppCompatActivity(), adapter.Listener {
                         for (cryptoModel:CryptoModel in cryptoModels!!){
                         }
                         recyclerViewSettingsAdapter = adapter(cryptoModels!!,this@MainActivity)
-                        recyclerView.adapter = recyclerViewSettingsAdapter
+                        profileRecyclerView.adapter = recyclerViewSettingsAdapter
 
                     }
                 }

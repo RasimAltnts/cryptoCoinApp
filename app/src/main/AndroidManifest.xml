@@ -3,7 +3,7 @@
     package="com.example.coroutinecryptoapi">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
+        <activity
+            android:name=".view.settingsProfile"
+            android:exported="true" />
         <activity
             android:name=".view.forgetPassword"
             android:exported="true" />

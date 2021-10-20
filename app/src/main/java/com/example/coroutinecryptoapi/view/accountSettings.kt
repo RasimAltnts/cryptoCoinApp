@@ -14,7 +14,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_account_settings.*
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -35,6 +34,10 @@ class accountSettings : AppCompatActivity(),settinsAdapter.settingslistener{
 
         GlobalScope.launch(Dispatchers.Default) {
             settings(settings)
+        }
+        AccountİmageView.setOnClickListener {
+            val intent = Intent(this,settingsProfile::class.java)
+            startActivity(intent)
         }
     }
 
