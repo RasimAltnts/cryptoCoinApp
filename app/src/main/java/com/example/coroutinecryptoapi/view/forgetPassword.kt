@@ -23,12 +23,11 @@ class forgetPassword : AppCompatActivity() {
         try {
             val auth = FirebaseAuth.getInstance()
             val currentEmail = forgetEmailEditText.text.toString()
-            println(currentEmail)
             if ("@" in currentEmail) {
                 val result = auth.sendPasswordResetEmail(currentEmail)
                 result.addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(this, "Eposta Adresinizi kontrol ediniz...", Toast.LENGTH_LONG)
+                        Toast.makeText(this, "Eposta Adresinizi kontrol ediniz...", Toast.LENGTH_LONG).show()
                         println("${currentEmail}")
                     } else {
                         println("E posta gönderilemedi...")

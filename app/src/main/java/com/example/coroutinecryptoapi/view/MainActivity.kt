@@ -1,9 +1,12 @@
 package com.example.coroutinecryptoapi.view
 
+import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coroutinecryptoapi.Model.CryptoModel
@@ -19,11 +22,27 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity(), adapter.Listener {
+    //API service BASE URL tanımlandı....
     private val BASE_URL = "https://api.nomics.com/v1/"
+    //Model Tanımlama işlemi gerçekleştirildi...
     private var cryptoModels:ArrayList<CryptoModel>? = null
+    //Mainpage recyclerViewAdapter nesnesi türetildi...
     private var recyclerViewSettingsAdapter : adapter? = null
+
+    /*
+    İzin işlemleri gerçekleştildi.
+     */
+
+    private val permissionRequired = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+    private val permission_callback_constat = 100
+    private val request_permission_settings = 101
+
+    //ActivityFinish Request Code
+    private val requestCode = 101
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,18 +53,24 @@ class MainActivity : AppCompatActivity(), adapter.Listener {
         recyclerView.layoutManager = layoutManager
 
         GlobalScope.launch(Dispatchers.Default) {
-            println("Working ${Thread.currentThread().name}")
+            //println("Working ${Thread.currentThread().name}")
             loadData()
         }
 
         settingsİmageView.setOnClickListener {
-            AccountonClick()
+            finishActivity(requestCode)
+            settingsOnClick()
+
         }
-
-
 
     }
 
+
+
+
+
+
+    //Retrofit ile dataları JSON formatında çekme işlemi gerçekleştirildi...
     suspend fun loadData(){
         println("Working ${Thread.currentThread().name}")
         val retrofit = Retrofit.Builder()
@@ -79,12 +104,17 @@ class MainActivity : AppCompatActivity(), adapter.Listener {
 
         })
     }
+    // Retrofit ile çekme işlemi yapıldı
 
+
+    //RecyleViewAdapter Interface OnItenClick Listener Function Tanımnlandıı
     override fun OnItemClick(cryptoModel: CryptoModel) {
         Toast.makeText(this,"Clicked : ${cryptoModel.currency}", Toast.LENGTH_LONG).show()
     }
 
-    fun AccountonClick(){
+
+    //Settings İmageView Settings sayfasına intent olarak uygulamayı settings sayfasına yönlendirme işlemi gerçekleştirdi..
+    fun settingsOnClick(){
         Toast.makeText(this,"Thread:${Thread.currentThread().name}",Toast.LENGTH_LONG).show()
         val intent=Intent(this,accountSettings::class.java)
         startActivity(intent)

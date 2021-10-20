@@ -1,10 +1,10 @@
 package com.example.coroutinecryptoapi.view
 
-import android.annotation.SuppressLint
-import android.content.Context
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -36,8 +36,6 @@ class accountSettings : AppCompatActivity(),settinsAdapter.settingslistener{
         GlobalScope.launch(Dispatchers.Default) {
             settings(settings)
         }
-
-
     }
 
     override fun onResume() {
@@ -65,6 +63,7 @@ class accountSettings : AppCompatActivity(),settinsAdapter.settingslistener{
         }
 
     }
+
     fun settings(settingsInfo: Array<String>){
 
         RecyleViewAdapterSettings = settinsAdapter(settingsInfo,this@accountSettings)
@@ -78,5 +77,10 @@ class accountSettings : AppCompatActivity(),settinsAdapter.settingslistener{
         onResume()
 
         }
+
+    fun goHome(view:View){
+        val intent = Intent(this,MainActivity::class.java)
+        startActivity(intent)
+    }
 
     }
