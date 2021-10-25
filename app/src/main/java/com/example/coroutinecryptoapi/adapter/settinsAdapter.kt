@@ -12,6 +12,7 @@ class settinsAdapter(val settings:Array<String> ,private val listener: settinsAd
 
     interface settingslistener{
             fun OnItemClick(settings:Array<String>,position: Int)
+        fun permissionRequest()
     }
 
     class RowHolder(view:View): RecyclerView.ViewHolder(view){

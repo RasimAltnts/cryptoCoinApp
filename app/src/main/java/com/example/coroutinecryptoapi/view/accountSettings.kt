@@ -81,6 +81,10 @@ class accountSettings : AppCompatActivity(),settinsAdapter.settingslistener{
 
         }
 
+    override fun permissionRequest() {
+        TODO("Not yet implemented")
+    }
+
     fun goHome(view:View){
         val intent = Intent(this,MainActivity::class.java)
         startActivity(intent)
